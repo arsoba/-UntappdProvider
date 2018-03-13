@@ -41,6 +41,9 @@ class Provider extends AbstractProvider implements ProviderInterface
             'headers' => [
                 'Authorization' => 'Bearer '.$token,
             ],
+            'curl' => [
+                CURLOPT_INTERFACE => 'eth1'
+            ]
         ]);
 
         return array_get(json_decode($response->getBody()->getContents(), true), 'response.user');
