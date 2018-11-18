@@ -42,11 +42,14 @@ class Provider extends AbstractProvider implements ProviderInterface
                 'Authorization' => 'Bearer '.$token,
             ],
             'curl' => [
-                CURLOPT_INTERFACE => 'eth1'
+                CURLOPT_PROXY => "127.0.0.1:9050",
+                CURLOPT_PROXYTYPE => CURLPROXY_SOCKS5,
             ]
         ]);
 
-        return array_get(json_decode($response->getBody()->getContents(), true), 'response.user');
+        $userData = array_get(json_decode($response->getBody()->getContents(), true), 'response.user');
+        $userData['access_token'] = $token;
+        return $token;
     }
 
     /**
@@ -61,6 +64,7 @@ class Provider extends AbstractProvider implements ProviderInterface
             'email' => array_get($user, 'settings.email_address'),
             'avatar' => array_get($user, 'user_avatar'),
             'avatar_original' => array_get($user, 'user_avatar_hd'),
+            'access_token' => array_get($user, 'access_token'),
         ]);
     }
 
