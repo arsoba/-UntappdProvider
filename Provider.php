@@ -49,7 +49,7 @@ class Provider extends AbstractProvider implements ProviderInterface
 
         $userData = array_get(json_decode($response->getBody()->getContents(), true), 'response.user');
         $userData['access_token'] = $token;
-        return $token;
+        return $userData;
     }
 
     /**
