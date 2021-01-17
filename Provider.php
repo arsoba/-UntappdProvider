@@ -42,8 +42,8 @@ class Provider extends AbstractProvider implements ProviderInterface
                 'Authorization' => 'Bearer '.$token,
             ],
             'curl' => [
-                CURLOPT_PROXY => "127.0.0.1:9050",
-                CURLOPT_PROXYTYPE => CURLPROXY_SOCKS5,
+                CURLOPT_PROXY => "188.165.204.7:3739",
+                CURLOPT_PROXYTYPE => CURLPROXY_HTTP,
             ]
         ]);
 
